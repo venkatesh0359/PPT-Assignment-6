@@ -1,1 +1,31 @@
+public class MinProductSum {
+
+  public static long minProductSum(int[] nums1, int[] nums2) {
+    Arrays.sort(nums1);
+
+ 
+    Arrays.sort(nums2, Collections.reverseOrder());
+
+
+    long productSum = 0;
+
+    for (int i = 0; i < nums1.length; i++) {
+  
+      productSum += nums1[i] * nums2[i];
+    }
+
+
+    return productSum;
+  }
+
+  public static void main(String[] args) {
+    int[] nums1 = {5, 3, 4, 2};
+    int[] nums2 = {4, 2, 2, 5};
+
+    long productSum = minProductSum(nums1, nums2);
+
+
+    System.out.println("Minimum product sum: " + productSum);
+  }
+}
 
