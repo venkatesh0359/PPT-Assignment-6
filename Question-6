@@ -1,1 +1,39 @@
+import java.util.*;
+
+public class FindOriginalArray {
+
+    public static List<Integer> findOriginal(List<Integer> changed) {
+
+        if (!changed.stream().allMatch(x -> x % 2 == 0)) {
+            return new ArrayList<>();
+        }
+
+        Set<Integer> changedSet = new HashSet<>(changed);
+
+
+        List<List<Integer>> originals = new ArrayList<>();
+        for (int i = 0; i < changedSet.size() / 2; i++) {
+            originals.add(new ArrayList<>(Arrays.asList(changedSet.pollFirst() / 2, changedSet.pollFirst() / 2)));
+        }
+
+        Collections.shuffle(originals);
+
+ 
+        for (List<Integer> original : originals) {
+            if (original.equals(changed)) {
+                return original;
+            }
+        }
+
+        return new ArrayList<>();
+    }
+
+    public static void main(String[] args) {
+        List<Integer> changed = Arrays.asList(1, 3, 4, 2, 6, 8);
+
+        List<Integer> original = findOriginal(changed);
+
+        System.out.println(original);
+    }
+}
 
